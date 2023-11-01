@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-lg-12">
+      <div class="card chat-app">
+        <div id="plist" class="people-list">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-search iconSearch"></i></span>
+            </div>
+            <input type="text" class="form-control"
+                   name="search" [(ngModel)]="searchText"
+                    />
+          </div>
+          <ul class="list-unstyled chat-list mt-2 mb-0">
+            <li class="clearfix" *ngFor="let userChat of this.user | filter:searchText">
+              <div class="clearfixSub">
+                <img class="clearfixImg" src="../../../assets/userImages/user.png" alt="avatar">
+                <div class="about">
+                  <div class="name">{{ userChat }}</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="chat">
+          <div class="chat-header clearfix">
+            <div class="row">
+              <div class="col-lg-9 col-md-8">
+
+                <div class="chat-about">
+                  <h3 class="mt-2">{{roomName}} Odasına Hoşgeldiniz!</h3>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 mt-4">
+                  <span (click)="leaveChat()" class="btn btn-danger">
+                    <i class="fa fa-sign-out iconClass"></i>
+                  </span>
+              </div>
+            </div>
+          </div>
+          <div class="chat-history">
+            <ul class="m-b-0">
+
+              <li  [ngClass]="{
+                    'clearfix': message.user !== loggedInUserName,
+                    'clearfix message-data-right': message.user === loggedInUserName
+                  }"  *ngFor="let message of messages">
+                <div [ngClass]="{
+                    'message-data': message.user !== loggedInUserName,
+                    'message-data-right': message.user === loggedInUserName
+                  }">
+                  <span class="font-italic">
+                    <small>
+                      {{ message.messageTime | date:'medium'}}
+
+                    </small>
+                  </span>
+                </div>
+
+
+                <div class="message my-message">
+                  <span>
+                    <strong class="messageInfo">
+                      {{ message.user }}
+                    </strong>
+                  </span> {{ message.message }}
+                </div>
+              </li>
+
+
+            </ul>
+          </div>
+          <div class="chat-message clearfix">
+            <div class="input-group mb-0">
+            
+              <input type="text" class="form-control"  (keydown.enter)="sendMessage()" [(ngModel)]="inputMessage"  placeholder="Enter text here...">
+              <div class="input-group-prepend">
+                <button class="input-group-text inputSend" (click)="sendMessage()"><i class="fa fa-send"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

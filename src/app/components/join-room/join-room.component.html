@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mb-3">
+      <h2 class="text-center text-dark m-5">ChatHub</h2>
+      <p class="text-center text-dark m-5"> Konuşmaya başlamadan önce lütfen bir odaya katılın.</p>
+      <div class="card m-2">
+        <form [formGroup]="joinRoomForm" class="card-body p-5">
+          <div class="mb-3">
+            <input formControlName="user" type="text" class="form-control" id="name" placeholder="İsim " />
+          </div>
+          <div class="mb-3">
+            <input formControlName="room" type="text" class="form-control" id="roomName" placeholder="Oda Adı " />
+          </div>
+          <div class="text-center btnJoinRoom">
+            <button type="submit" [disabled]="joinRoomForm.invalid" (click)="joinRoom()"
+              class="btn btn-outline-success">
+              Odaya Katıl
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
